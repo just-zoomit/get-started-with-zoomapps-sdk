@@ -142,24 +142,20 @@
 <pre><code language="language-javascript" class="language-javascript">{
   &#34;manifest&#34;: {
       &#34;display_information&#34;: {
-          &#34;display_name&#34;: &#34;Zoom App Next.js Sample App&#34;
+          &#34;display_name&#34;: &#34;Zoom Apps Next.js Sample App&#34;
       },
       &#34;oauth_information&#34;: {
           &#34;usage&#34;: &#34;USER_OPERATION&#34;,
           &#34;development_redirect_uri&#34;: &#34;https://example.ngrok.io/auth/callback&#34;,
           &#34;production_redirect_uri&#34;: &#34;&#34;,
           &#34;oauth_allow_list&#34;: [
-              &#34;https://example.ngrok.io/auth/callback&#34;,
-              &#34;https://oauth.pstmn.io/v1/callback&#34;
+              &#34;https://example-backend.ngrok.io/auth/v1/callback&#34;,
+              &#34;https://oauth.pstmn.io/v1/callback&#34;,
+              &#34;https://example.ngrok.io/auth/callback&#34;
           ],
           &#34;strict_mode&#34;: false,
           &#34;subdomain_strict_mode&#34;: false,
           &#34;scopes&#34;: [
-              
-              {
-                  &#34;scope&#34;: &#34;zoomapp:inmeeting&#34;,
-                  &#34;optional&#34;: false
-              },
               {
                   &#34;scope&#34;: &#34;marketplace:read:app&#34;,
                   &#34;optional&#34;: false
@@ -167,11 +163,20 @@
               {
                   &#34;scope&#34;: &#34;user:read:user&#34;,
                   &#34;optional&#34;: false
+              },
+              {
+                  &#34;scope&#34;: &#34;zoomapp:inmeeting&#34;,
+                  &#34;optional&#34;: false
+              },
+              {
+                  &#34;scope&#34;: &#34;imchat:userapp&#34;,
+                  &#34;optional&#34;: false
               }
           ]
       },
       &#34;features&#34;: {
           &#34;products&#34;: [
+              &#34;ZOOM_CHAT&#34;,
               &#34;ZOOM_MEETING&#34;
           ],
           &#34;development_home_uri&#34;: &#34;https://example.ngrok.io&#34;,
@@ -235,14 +240,41 @@
               }
           },
           &#34;team_chat_subscription&#34;: {
-              &#34;enable&#34;: false,
+              &#34;enable&#34;: true,
               &#34;enable_support_channel&#34;: false,
-              &#34;shortcuts&#34;: []
+              &#34;slash_command&#34;: {
+                  &#34;command&#34;: &#34;hello_world&#34;,
+                  &#34;command_hints&#34;: [],
+                  &#34;enable_add_to_channel&#34;: false,
+                  &#34;development_message_url&#34;: &#34;https://example.ngrok.io/api/zoom/webhooks/chatbot&#34;,
+                  &#34;production_message_url&#34;: &#34;&#34;,
+                  &#34;sender_type&#34;: &#34;zoom&#34;,
+                  &#34;welcome_msg&#34;: {
+                      &#34;title&#34;: &#34;&#34;,
+                      &#34;body&#34;: &#34;&#34;
+                  },
+                  &#34;trust_domain_list&#34;: []
+              },
+              &#34;shortcuts&#34;: [
+                  {
+                      &#34;shortcut_id&#34;: &#34;UOsdVfdsQleTRNFm54QXqw&#34;,
+                      &#34;action_label&#34;: &#34;Open App&#34;,
+                      &#34;action_id&#34;: &#34;app_opened&#34;,
+                      &#34;action_types&#34;: [
+                          &#34;MESSAGE_ACTION&#34;,
+                          &#34;COMPOSE_BOX&#34;
+                      ],
+                      &#34;action_usage&#34;: &#34;DIALOG&#34;,
+                      &#34;dialog_config&#34;: {
+                          &#34;title&#34;: &#34;create_message&#34;,
+                          &#34;size&#34;: &#34;M&#34;
+                      }
+                  }
+              ]
           },
           &#34;event_subscription&#34;: {
-              &#34;enable&#34;: true,
-              &#34;events&#34;: [                   
-              ]
+              &#34;enable&#34;: false,
+              &#34;events&#34;: []
           }
       }
   }
